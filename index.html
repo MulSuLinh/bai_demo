@@ -1,0 +1,288 @@
+<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Cà phê nguyên chất, rang mộc, giao tận nhà.">
+<title>Mộc Coffee — Cà phê nguyên chất</title>
+<style>
+:root{--coffee:#4b2e20;--dark:#211710;--cream:#fbf6ed;--gold:#c58b45;--muted:#776b60}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;font-family:Arial,Helvetica,sans-serif;background:var(--cream);color:var(--dark);line-height:1.6}
+a{color:inherit;text-decoration:none}.wrap{width:min(1100px,92%);margin:auto}
+header{position:sticky;top:0;z-index:5;background:#fbf6edee;backdrop-filter:blur(10px);border-bottom:1px solid #eadfce}
+nav{display:flex;align-items:center;justify-content:space-between;gap:18px;padding:16px 0}.logo{font-size:1.35rem;font-weight:800;color:var(--coffee);letter-spacing:.5px}.logo span{color:var(--gold)}.navlinks{display:flex;gap:22px;color:var(--muted);font-size:.95rem}.cartbtn,.btn{border:0;border-radius:999px;background:var(--coffee);color:white;padding:11px 18px;cursor:pointer;font-weight:700}.cartbtn{white-space:nowrap}.hero{padding:64px 0 70px;background:radial-gradient(circle at 78% 35%,#e9d1ac 0,transparent 32%),linear-gradient(120deg,#f7eddd,#fbf6ed 60%);overflow:hidden}
+.hero-grid{display:grid;grid-template-columns:1.1fr .9fr;align-items:center;gap:36px}.eyebrow{color:#9a672d;text-transform:uppercase;letter-spacing:2px;font-weight:800;font-size:.8rem}.hero h1{font-size:clamp(2.5rem,5vw,4.6rem);line-height:1.05;letter-spacing:-2px;margin:14px 0}.hero p{color:var(--muted);max-width:510px}.hero .btn{display:inline-block;margin-top:14px;padding:14px 23px}.hero-img{width:100%;height:390px;object-fit:cover;border-radius:48% 48% 18px 18px;box-shadow:0 22px 50px #563a2028}
+section{padding:62px 0}.section-head{text-align:center;margin-bottom:30px}.section-head h2{font-size:clamp(1.8rem,3vw,2.5rem);margin:4px 0}.section-head p{color:var(--muted);margin:0}.filters{display:flex;justify-content:center;flex-wrap:wrap;gap:10px;margin:0 0 24px}.filter{border:1px solid #d8c4aa;background:#fffaf2;color:var(--coffee);border-radius:999px;padding:9px 15px;cursor:pointer;font-weight:700}.filter.active,.filter:hover{background:var(--coffee);color:white}.product-category{display:inline-block;align-self:flex-start;font-size:.75rem;font-weight:700;color:#855426;background:#f5ead9;border-radius:999px;padding:4px 9px;margin-bottom:8px}.products{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}.product{background:white;border:1px solid #eee4d7;border-radius:18px;overflow:hidden;box-shadow:0 8px 22px #3d281008;display:flex;flex-direction:column}.product img{width:100%;height:205px;object-fit:cover;background:#e9dcc9}.product-body{padding:18px;display:flex;flex-direction:column;flex:1}.product h3{margin:0 0 6px;font-size:1.15rem}.product p{margin:0 0 14px;color:var(--muted);font-size:.92rem;flex:1}.price-row{display:flex;align-items:center;justify-content:space-between;gap:10px}.price{font-weight:800;color:#8a4c20;font-size:1.1rem}.add{background:#f1e4d1;color:var(--coffee);border:0;border-radius:10px;padding:10px 12px;font-weight:800;cursor:pointer}.add:hover{background:#e7d1b2}
+.promise{background:#efe3d1}.promise-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;text-align:center}.promise article{padding:15px}.promise .emoji{font-size:2rem}.promise h3{margin:8px 0}.promise p{color:var(--muted);margin:0;font-size:.94rem}
+.cart-panel{background:white;border:1px solid #e8ddcd;border-radius:16px;padding:22px;max-width:720px;margin:28px auto 0}.cart-panel h3{margin-top:0}.cart-line{display:flex;justify-content:space-between;gap:12px;border-bottom:1px solid #eee5d9;padding:10px 0}.cart-line button{border:0;background:none;color:#9a4a2c;cursor:pointer}.cart-total{display:flex;justify-content:space-between;font-weight:800;font-size:1.15rem;padding:16px 0}.checkout{display:grid;grid-template-columns:1fr 1fr;gap:12px}.checkout input,.checkout textarea{width:100%;padding:12px;border:1px solid #ddcfbd;border-radius:10px;font:inherit;background:#fffdf9}.checkout textarea{grid-column:1/-1;min-height:75px}.checkout button{grid-column:1/-1}
+.notice{font-size:.85rem;color:var(--muted);margin:12px 0 0}footer{background:var(--dark);color:#f8efe2;padding:30px 0;text-align:center}footer p{color:#cbb9a5;margin:5px}
+@media(max-width:760px){.hero-grid{grid-template-columns:1fr}.hero-img{height:270px;max-width:440px;margin:auto}.products{grid-template-columns:1fr 1fr}.navlinks{display:none}.promise-grid{grid-template-columns:1fr}.hero{padding-top:44px}}
+@media(max-width:480px){.products{grid-template-columns:1fr}.product img{height:230px}.checkout{grid-template-columns:1fr}.checkout textarea,.checkout button{grid-column:auto}.hero h1{letter-spacing:-1px}}
+
+
+/* Trợ lý Mộc */
+.ai-launcher{position:fixed;right:22px;bottom:22px;z-index:20;border:0;border-radius:999px;background:var(--coffee);color:#fff;padding:14px 18px;font-weight:800;box-shadow:0 8px 28px #21171035;cursor:pointer}
+.ai-panel{position:fixed;right:22px;bottom:84px;z-index:20;width:min(360px,calc(100vw - 28px));height:min(500px,calc(100vh - 120px));background:#fffdf9;border:1px solid #e5d6c3;border-radius:20px;box-shadow:0 18px 55px #21171030;display:none;overflow:hidden;flex-direction:column}
+.ai-panel.open{display:flex}.ai-head{background:var(--coffee);color:white;padding:15px 16px;display:flex;justify-content:space-between;align-items:center;gap:10px}.ai-head strong{display:block}.ai-head small{color:#f0ddc5}.ai-close{border:0;background:transparent;color:white;font-size:1.4rem;cursor:pointer}.ai-messages{padding:14px;display:flex;flex-direction:column;gap:10px;overflow:auto;flex:1;background:#fbf6ed}.ai-message{max-width:90%;padding:10px 12px;border-radius:14px;white-space:pre-wrap;overflow-wrap:anywhere;font-size:.92rem}.ai-message.bot{background:#fff;border:1px solid #eee1d0;align-self:flex-start}.ai-message.user{background:#4b2e20;color:white;align-self:flex-end}.ai-quick{display:flex;flex-wrap:wrap;gap:6px;padding:0 12px 10px;background:#fbf6ed}.ai-quick button{border:1px solid #d9c4a9;border-radius:999px;background:#fffaf2;color:var(--coffee);padding:7px 9px;font-size:.78rem;cursor:pointer}.ai-form{display:flex;gap:8px;padding:12px;border-top:1px solid #eee1d0;background:#fff}.ai-form input{min-width:0;flex:1;border:1px solid #ddcfbd;border-radius:999px;padding:11px 13px;font:inherit}.ai-form button{border:0;border-radius:999px;background:var(--gold);color:#211710;padding:0 14px;font-weight:800;cursor:pointer}.ai-note{font-size:.72rem;color:var(--muted);padding:0 13px 10px;background:#fff}
+
+</style>
+</head>
+<body>
+<header><div class="wrap"><nav><a class="logo" href="#">MỘC<span>.</span> COFFEE</a><div class="navlinks"><a href="#san-pham">Sản phẩm</a><a href="#ve-chung-toi">Về chúng tôi</a><a href="#dat-hang">Đặt hàng</a><a href="#quan-ly">Quản lý</a></div><a class="cartbtn" href="#dat-hang">Giỏ hàng (<span id="cart-count">0</span>)</a></nav></div></header>
+
+<button class="ai-launcher" id="ai-launcher" type="button" aria-controls="ai-panel" aria-expanded="false">☕ Hỏi Mộc AI</button>
+<aside class="ai-panel" id="ai-panel" aria-label="Trợ lý Mộc Coffee" aria-hidden="true">
+  <div class="ai-head"><div><strong>☕ Trợ lý Mộc Coffee</strong><small>Hỗ trợ chọn cà phê và đặt hàng</small></div><button class="ai-close" id="ai-close" type="button" aria-label="Đóng trợ lý">×</button></div>
+  <div class="ai-messages" id="ai-messages" aria-live="polite"><div class="ai-message bot">Xin chào! Mình có thể giúp bạn chọn cà phê, xem giá và hướng dẫn đặt hàng. Bạn muốn tìm hiểu điều gì?</div></div>
+  <div class="ai-quick"><button type="button" data-ai-prompt="Gợi ý cà phê cho người mới">Gợi ý cho người mới</button><button type="button" data-ai-prompt="Sản phẩm nào rẻ nhất?">Giá rẻ nhất</button><button type="button" data-ai-prompt="Cách đặt hàng thế nào?">Cách đặt hàng</button></div>
+  <form class="ai-form" id="ai-form"><input id="ai-input" aria-label="Tin nhắn" placeholder="Nhập câu hỏi..." autocomplete="off" required><button type="submit">Gửi</button></form>
+  <div class="ai-note">Bản trợ lý demo chạy tại trình duyệt, chưa kết nối mô hình AI trực tuyến.</div>
+</aside>
+
+<main>
+<section class="hero"><div class="wrap hero-grid"><div><div class="eyebrow">Hương vị từ cao nguyên</div><h1>Mỗi ngày một chút <span style="color:#9a672d">đậm đà.</span></h1><p>Cà phê Việt rang mộc, thơm tự nhiên và đậm vị. Chọn loại cà phê yêu thích để bắt đầu ngày mới theo cách của bạn.</p><a class="btn" href="#san-pham">Khám phá sản phẩm ↓</a></div><img class="hero-img" src="https://images.unsplash.com/photo-1447933601403-0c6688de566e?auto=format&fit=crop&w=1000&q=85" alt="Hạt cà phê rang và tách cà phê"></div></section>
+<section id="san-pham"><div class="wrap"><div class="section-head"><div class="eyebrow">Góc cà phê</div><h2>Sản phẩm nổi bật</h2><p>Chọn hương vị hợp gu của bạn.</p></div><div class="filters" id="product-filters" aria-label="Lọc sản phẩm"><button class="filter active" type="button" data-filter="Tất cả">Tất cả</button><button class="filter" type="button" data-filter="Cà phê hạt & bột">Cà phê hạt & bột</button><button class="filter" type="button" data-filter="Cà phê tiện lợi">Cà phê tiện lợi</button><button class="filter" type="button" data-filter="Dụng cụ pha chế">Dụng cụ pha chế</button></div><div class="products" id="products"></div></div></section>
+<section class="promise" id="ve-chung-toi"><div class="wrap"><div class="section-head"><div class="eyebrow">Cam kết Mộc Coffee</div><h2>Đơn giản, thật lòng, chất lượng</h2></div><div class="promise-grid"><article><div class="emoji">☕</div><h3>Hương vị nguyên bản</h3><p>Thông tin sản phẩm rõ ràng, ưu tiên hương vị cà phê tự nhiên.</p></article><article><div class="emoji">🌱</div><h3>Chọn lọc kỹ càng</h3><p>Gợi ý nhiều lựa chọn từ cà phê hạt đến cà phê xay.</p></article><article><div class="emoji">📦</div><h3>Đặt hàng dễ dàng</h3><p>Thêm sản phẩm vào giỏ và gửi thông tin đặt hàng ngay trên trang.</p></article></div></div></section>
+<section id="dat-hang"><div class="wrap"><div class="section-head"><div class="eyebrow">Đặt hàng</div><h2>Giỏ hàng của bạn</h2><p>Kiểm tra số lượng rồi điền thông tin nhận hàng.</p></div><div class="cart-panel"><div id="cart-items">Giỏ hàng đang trống. Hãy chọn sản phẩm bên trên nhé!</div><div class="cart-total"><span>Tổng cộng</span><span id="cart-total">0đ</span></div><form class="checkout" id="order-form"><input id="customer-name" placeholder="Tên người nhận" required><input id="customer-phone" placeholder="Số điện thoại" type="tel" required><input id="customer-address" placeholder="Địa chỉ nhận hàng" required style="grid-column:1/-1"><textarea id="customer-note" placeholder="Ghi chú (nếu có)"></textarea><button class="btn" type="submit">Tạo đơn hàng</button></form><p class="notice">Đây là bản demo: đơn hàng sẽ được tạo thành nội dung để bạn sao chép. Trang chưa kết nối thanh toán hoặc hệ thống lưu đơn.</p><div id="order-result" aria-live="polite"></div></div></div></section>
+
+<section id="quan-ly" class="management-area"><div class="mc-wrap"><style>
+.management-area{--coffee:#4b2e20;--dark:#211710;--cream:#fbf6ed;--gold:#c58b45;--muted:#776b60;--line:#eadfce;--white:#fff}
+.management-area *{box-sizing:border-box}
+.management-area a{color:inherit;text-decoration:none}
+.management-area button,.management-area input,.management-area select,.management-area textarea{font:inherit}
+.management-area button{cursor:pointer}
+.management-area .mc-wrap{width:min(1180px,94%);margin:auto}
+.management-area .top{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:16px 0}
+.management-area .logo{font-size:1.25rem;font-weight:900;color:var(--coffee)}
+.management-area .logo span{color:var(--gold)}
+.management-area .back{color:var(--coffee);font-weight:700}
+.management-area .mc-hero{padding:28px 0 18px}
+.management-area .mc-eyebrow{margin:0;color:#96652e;font-weight:800;text-transform:uppercase;letter-spacing:1.4px;font-size:.76rem}
+.management-area .mc-hero h1{margin:6px 0;font-size:clamp(1.65rem,4vw,2.4rem);line-height:1.15}
+.management-area .mc-sub{margin:8px 0 0;color:var(--muted);max-width:760px}
+.management-area .mc-notice{margin:14px 0 20px;padding:12px 14px;background:#fff7e8;border:1px solid #ead2aa;border-radius:12px;color:#694a25;font-size:.92rem}
+.management-area .mc-stats{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px;margin-bottom:22px}
+.management-area .mc-stat{padding:18px;background:var(--white);border:1px solid var(--line);border-radius:16px;box-shadow:0 5px 18px #4b2e2008}
+.management-area .mc-stat span{display:block;color:var(--muted);font-size:.87rem}
+.management-area .mc-stat strong{display:block;font-size:clamp(1.1rem,2vw,1.7rem);margin-top:7px;overflow-wrap:anywhere}
+.management-area .mc-stat.mc-profit strong{color:#286547}
+.management-area .mc-filters{display:flex;align-items:end;gap:10px;flex-wrap:wrap;padding:14px;background:#f1e7d9;border-radius:14px;margin-bottom:20px}
+.management-area .mc-field{display:flex;flex-direction:column;gap:6px;min-width:0}
+.management-area .mc-filters .mc-field{min-width:150px}
+.management-area .mc-field label{font-size:.85rem;font-weight:700;color:#554337}
+.management-area .mc-field input,.management-area .mc-field select,.management-area .mc-field textarea{width:100%;min-height:42px;border:1px solid #d9c8b5;border-radius:9px;padding:9px 10px;background:#fff;color:var(--dark)}
+.management-area .mc-field textarea{min-height:78px;resize:vertical}
+.management-area .mc-btn{border:0;border-radius:9px;padding:10px 14px;background:var(--coffee);color:#fff;font-weight:800;min-height:42px}
+.management-area .mc-btn.mc-gold{background:var(--gold);color:var(--dark)}
+.management-area .mc-btn.mc-light{background:#fff;border:1px solid #d9c8b5;color:var(--coffee)}
+.management-area .mc-btn.mc-danger{background:#a53d31;color:#fff}
+.management-area .mc-layout{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px;margin-bottom:22px}
+.management-area .mc-panel{background:#fff;border:1px solid var(--line);border-radius:16px;overflow:hidden;min-width:0}
+.management-area .mc-panel-head{padding:16px 18px;border-bottom:1px solid var(--line)}
+.management-area .mc-panel-head h2{font-size:1.12rem;margin:0}
+.management-area .mc-panel-head p{font-size:.86rem;color:var(--muted);margin:5px 0 0}
+.management-area .mc-panel-body{padding:18px}
+.management-area .mc-form-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+.management-area .mc-field.mc-full{grid-column:1/-1}
+.management-area .mc-actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:14px}
+.management-area .mc-section-head{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;padding:18px 18px 10px}
+.management-area .mc-section-head h2{margin:0;font-size:1.15rem}
+.management-area .mc-table-wrap{overflow:auto;width:100%;padding:0 12px 12px}
+.management-area table{width:100%;border-collapse:collapse;white-space:nowrap;font-size:.9rem}
+.management-area th,.management-area td{text-align:left;padding:11px 9px;border-bottom:1px solid #f0e7db}
+.management-area th{font-size:.78rem;color:var(--muted);text-transform:uppercase;letter-spacing:.4px}
+.management-area td.mc-money{font-weight:800}
+.management-area td .mc-delete{border:1px solid #e5c7c1;border-radius:7px;background:#fff7f5;color:#963b31;padding:5px 8px;font-size:.8rem;font-weight:700}
+.management-area .mc-empty{text-align:center;color:var(--muted);padding:25px}
+.management-area .mc-footnote{color:var(--muted);font-size:.82rem;margin:22px 0 30px}
+@media(max-width:850px){
+.management-area .mc-stats{grid-template-columns:repeat(2,minmax(0,1fr))}
+.management-area .mc-layout{grid-template-columns:1fr}}@media(max-width:520px){
+.management-area .mc-form-grid{grid-template-columns:1fr}
+.management-area .mc-field.mc-full{grid-column:auto}
+.management-area .top{align-items:flex-start}
+.management-area .mc-stats{gap:9px}
+.management-area .mc-stat{padding:13px}
+.management-area .mc-filters .mc-field{flex:1;min-width:130px}}
+</style>
+
+<section class="mc-hero"><p class="mc-eyebrow">Bảng điều khiển nội bộ · Bản demo</p><h1>Quản lý bán hàng & chi tiêu</h1><p class="mc-sub">Ghi nhận các giao dịch bán hàng, theo dõi chi phí và xem kết quả thu–chi của Mộc Coffee.</p></section>
+<div class="mc-notice"><strong>Lưu ý:</strong> Đây là bản demo tĩnh. Dữ liệu được lưu trong bộ nhớ cục bộ (localStorage) của trình duyệt này, không đồng bộ qua thiết bị khác và chưa có đăng nhập, máy chủ hay cơ sở dữ liệu. Đơn hàng trên trang cửa hàng không tự chuyển vào bảng này; cần ghi nhận bán hàng tại đây.</div>
+<section class="mc-stats" aria-label="Tổng quan tài chính">
+<div class="mc-stat"><span>Doanh thu theo bộ lọc</span><strong id="stat-revenue">0 ₫</strong></div>
+<div class="mc-stat"><span>Chi tiêu theo bộ lọc</span><strong id="stat-expenses">0 ₫</strong></div>
+<div class="mc-stat mc-profit"><span>Chênh lệch thu − chi</span><strong id="stat-profit">0 ₫</strong></div>
+<div class="mc-stat"><span>Số giao dịch bán hàng</span><strong id="stat-sales-count">0</strong></div>
+</section>
+<section class="mc-filters" aria-label="Lọc theo ngày">
+<div class="mc-field"><label for="filter-from">Từ ngày</label><input type="date" id="filter-from"></div>
+<div class="mc-field"><label for="filter-to">Đến ngày</label><input type="date" id="filter-to"></div>
+<button class="mc-btn" id="apply-filter" type="button">Lọc dữ liệu</button><button class="mc-btn mc-light" id="clear-filter" type="button">Tất cả thời gian</button>
+</section>
+<section class="mc-layout">
+<article class="mc-panel"><div class="mc-panel-head"><h2>＋ Ghi nhận bán hàng</h2><p>Nhập giao dịch đã bán để tính doanh thu.</p></div><div class="mc-panel-body">
+<form id="sale-form"><div class="mc-form-grid">
+<div class="mc-field"><label for="sale-date">Ngày bán *</label><input id="sale-date" name="date" type="date" required></div>
+<div class="mc-field"><label for="sale-product">Tên sản phẩm *</label><input id="sale-product" name="product" list="product-list" maxlength="100" placeholder="VD: Robusta rang mộc" required><datalist id="product-list"><option value="Robusta rang mộc"><option value="Arabica thơm nhẹ"><option value="Cà phê phối trộn"><option value="Cà phê phin"><option value="Cà phê pha máy"><option value="Trà và đồ uống khác"></datalist></div>
+<div class="mc-field"><label for="sale-qty">Số lượng *</label><input id="sale-qty" name="qty" type="number" min="1" step="1" value="1" required></div>
+<div class="mc-field"><label for="sale-price">Đơn giá (VNĐ) *</label><input id="sale-price" name="price" type="number" min="0" step="1000" placeholder="120000" required></div>
+<div class="mc-field"><label for="sale-customer">Khách hàng (không bắt buộc)</label><input id="sale-customer" name="customer" maxlength="100" placeholder="Tên khách / mã đơn"></div>
+<div class="mc-field"><label for="sale-payment">Thanh toán</label><select id="sale-payment" name="payment"><option>Tiền mặt</option><option>Chuyển khoản</option><option>Thẻ</option><option>Khác</option></select></div>
+<div class="mc-field mc-full"><label for="sale-note">Ghi chú</label><input id="sale-note" name="note" maxlength="240" placeholder="Ghi chú đơn hàng (nếu có)"></div>
+</div><div class="mc-actions"><button class="mc-btn mc-gold" type="submit">Lưu giao dịch bán hàng</button></div></form>
+</div></article>
+<article class="mc-panel"><div class="mc-panel-head"><h2>－ Ghi nhận chi tiêu</h2><p>Nhập các khoản chi vận hành, nguyên liệu hoặc chi phí khác.</p></div><div class="mc-panel-body">
+<form id="expense-form"><div class="mc-form-grid">
+<div class="mc-field"><label for="expense-date">Ngày chi *</label><input id="expense-date" name="date" type="date" required></div>
+<div class="mc-field"><label for="expense-title">Khoản chi *</label><input id="expense-title" name="title" maxlength="120" placeholder="VD: Mua hạt cà phê" required></div>
+<div class="mc-field"><label for="expense-category">Danh mục</label><select id="expense-category" name="category"><option>Nguyên liệu</option><option>Mặt bằng</option><option>Nhân sự</option><option>Điện nước</option><option>Vận chuyển</option><option>Marketing</option><option>Dụng cụ, thiết bị</option><option>Khác</option></select></div>
+<div class="mc-field"><label for="expense-amount">Số tiền (VNĐ) *</label><input id="expense-amount" name="amount" type="number" min="1" step="1000" placeholder="500000" required></div>
+<div class="mc-field"><label for="expense-payment">Hình thức chi</label><select id="expense-payment" name="payment"><option>Tiền mặt</option><option>Chuyển khoản</option><option>Thẻ</option><option>Khác</option></select></div>
+<div class="mc-field"><label for="expense-note">Ghi chú</label><input id="expense-note" name="note" maxlength="240" placeholder="Nhà cung cấp, hóa đơn..."></div>
+</div><div class="mc-actions"><button class="mc-btn mc-gold" type="submit">Lưu khoản chi</button></div></form>
+</div></article>
+</section>
+<section class="mc-panel" style="margin-bottom:18px"><div class="mc-section-head"><h2>Danh sách bán hàng</h2><button class="mc-btn mc-light" type="button" id="export-sales">Xuất CSV bán hàng</button></div><div class="mc-table-wrap"><table><thead><tr><th>Ngày</th><th>Sản phẩm</th><th>Khách hàng / mã</th><th>SL</th><th>Đơn giá</th><th>Thành tiền</th><th>Thanh toán</th><th>Thao tác</th></tr></thead><tbody id="sales-body"><tr><td class="mc-empty" colspan="8">Chưa có giao dịch bán hàng.</td></tr></tbody></table></div></section>
+<section class="mc-panel"><div class="mc-section-head"><h2>Danh sách chi tiêu</h2><button class="mc-btn mc-light" type="button" id="export-expenses">Xuất CSV chi tiêu</button></div><div class="mc-table-wrap"><table><thead><tr><th>Ngày</th><th>Khoản chi</th><th>Danh mục</th><th>Số tiền</th><th>Thanh toán</th><th>Ghi chú</th><th>Thao tác</th></tr></thead><tbody id="expenses-body"><tr><td class="mc-empty" colspan="7">Chưa có khoản chi.</td></tr></tbody></table></div></section>
+<p class="mc-footnote">Mẹo: hãy xuất CSV định kỳ để lưu bản sao. Không nhập thông tin nhạy cảm của khách hàng vào bản demo này.</p>
+
+</div></section>
+</main>
+<footer><div class="wrap"><strong>MỘC COFFEE</strong><p>Cà phê ngon, bắt đầu từ những điều giản dị.</p><p>© <span id="year"></span> Mộc Coffee · Website demo</p></div></footer>
+<script>
+const products=[
+{id:1,category:"Cà phê hạt & bột",name:"Robusta rang mộc",desc:"Đậm đà, hậu vị mạnh, hợp pha phin truyền thống. Gói 500 g.",price:120000,image:"https://images.unsplash.com/photo-1559525839-b184a4d698c7?auto=format&fit=crop&w=800&q=80"},
+{id:2,category:"Cà phê hạt & bột",name:"Arabica thơm nhẹ",desc:"Hương thơm thanh, vị chua dịu và cân bằng. Gói 500 g.",price:165000,image:"https://images.unsplash.com/photo-1559525839-8f275b3c5edd?auto=format&fit=crop&w=800&q=80"},
+{id:3,category:"Cà phê hạt & bột",name:"Cà phê phối trộn",desc:"Robusta và Arabica cân bằng, dễ uống mỗi ngày. Gói 500 g.",price:140000,image:"https://images.unsplash.com/photo-1611854779393-1b2da9d400fe?auto=format&fit=crop&w=800&q=80"},
+{id:4,category:"Cà phê hạt & bột",name:"Cà phê Culi",desc:"Hạt tròn, vị đậm và hương thơm nổi bật. Gói 500 g.",price:155000,image:"https://images.unsplash.com/photo-1447933601403-0c6688de566e?auto=format&fit=crop&w=800&q=80"},
+{id:5,category:"Cà phê hạt & bột",name:"Cà phê Moka",desc:"Hương thơm tinh tế, phù hợp người thích vị nhẹ. Gói 250 g.",price:185000,image:"https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?auto=format&fit=crop&w=800&q=80"},
+{id:6,category:"Cà phê hạt & bột",name:"Cà phê Excelsa",desc:"Dòng cà phê có hương vị khác biệt, thích hợp để thử và phối trộn. Gói 250 g.",price:175000,image:"https://images.unsplash.com/photo-1514432324607-a09d9b4aefdd?auto=format&fit=crop&w=800&q=80"},
+{id:7,category:"Cà phê hạt & bột",name:"Cà phê Liberica",desc:"Dòng cà phê ít phổ biến với hương thơm cá tính. Gói 250 g.",price:180000,image:"https://images.unsplash.com/photo-1442512595331-e89e73853f31?auto=format&fit=crop&w=800&q=80"},
+{id:8,category:"Cà phê hạt & bột",name:"Cà phê không caffeine",desc:"Lựa chọn decaf cho người muốn hạn chế caffeine. Gói 250 g.",price:195000,image:"https://images.unsplash.com/photo-1445116572660-236099ec97a0?auto=format&fit=crop&w=800&q=80"},
+{id:9,category:"Cà phê hạt & bột",name:"Hạt rang Espresso",desc:"Rang đậm, phù hợp pha espresso và đồ uống sữa. Gói 500 g.",price:170000,image:"https://images.unsplash.com/photo-1510707577719-ae7c14805e76?auto=format&fit=crop&w=800&q=80"},
+{id:10,category:"Cà phê tiện lợi",name:"Cà phê hòa tan",desc:"Pha nhanh, tiện mang theo. Hộp mẫu 20 gói.",price:89000,image:"https://images.unsplash.com/photo-1517701604599-bb29b565090c?auto=format&fit=crop&w=800&q=80"},
+{id:11,category:"Cà phê tiện lợi",name:"Túi lọc Drip Bag",desc:"Túi lọc pha trực tiếp trên cốc. Hộp mẫu 10 túi.",price:99000,image:"https://images.unsplash.com/photo-1748895177768-b4a54b9c2954?auto=format&fit=crop&w=800&q=80"},
+{id:12,category:"Cà phê tiện lợi",name:"Cà phê Cold Brew",desc:"Cà phê pha lạnh tiện dùng, chai mẫu.",price:55000,image:"https://images.unsplash.com/photo-1461023058943-07fcbe16d735?auto=format&fit=crop&w=800&q=80"},
+{id:13,category:"Dụng cụ pha chế",name:"Phin nhôm truyền thống",desc:"Phin nhôm gọn nhẹ, phù hợp pha cà phê Việt.",price:45000,image:"https://images.unsplash.com/photo-1745210358756-e7f7ff40e506?auto=format&fit=crop&w=800&q=80"},
+{id:14,category:"Dụng cụ pha chế",name:"Phin inox",desc:"Dụng cụ pha phin bằng inox, dễ vệ sinh.",price:75000,image:"https://images.unsplash.com/photo-1745210358756-e7f7ff40e506?auto=format&fit=crop&w=800&q=80"},
+{id:15,category:"Dụng cụ pha chế",name:"Bình French Press",desc:"Bình ép thủ công để pha cà phê và tách bã.",price:220000,image:"https://images.unsplash.com/photo-1748895177768-b4a54b9c2954?auto=format&fit=crop&w=800&q=80"},
+{id:16,category:"Dụng cụ pha chế",name:"Bộ pha V60",desc:"Phễu lọc pour-over cho cách pha thủ công.",price:180000,image:"https://images.unsplash.com/photo-1748895177768-b4a54b9c2954?auto=format&fit=crop&w=800&q=80"},
+{id:17,category:"Dụng cụ pha chế",name:"Giấy lọc cà phê",desc:"Giấy lọc dùng với phễu pha tương thích. Gói mẫu 100 tờ.",price:65000,image:"https://images.unsplash.com/photo-1748895177768-b4a54b9c2954?auto=format&fit=crop&w=800&q=80"},
+{id:18,category:"Dụng cụ pha chế",name:"Máy xay cà phê cầm tay",desc:"Dụng cụ xay hạt tại nhà, dễ mang theo.",price:350000,image:"https://images.unsplash.com/photo-1632929427496-05e89b7e8550?auto=format&fit=crop&w=800&q=80"},
+{id:19,category:"Dụng cụ pha chế",name:"Cân điện tử pha chế",desc:"Giúp cân lượng cà phê và nước khi pha thủ công.",price:290000,image:"https://images.unsplash.com/photo-1753091122032-ddfb454849cc?auto=format&fit=crop&w=800&q=80"},
+{id:20,category:"Dụng cụ pha chế",name:"Ấm rót cổ ngỗng",desc:"Ấm rót nước có kiểm soát dòng chảy cho pour-over.",price:320000,image:"https://images.unsplash.com/photo-1748895177768-b4a54b9c2954?auto=format&fit=crop&w=800&q=80"},
+{id:21,category:"Dụng cụ pha chế",name:"Ấm Moka Pot",desc:"Ấm pha cà phê trên bếp, tạo cà phê đậm vị.",price:280000,image:"https://images.unsplash.com/photo-1748010445321-6255efc521d2?auto=format&fit=crop&w=800&q=80"},
+{id:22,category:"Dụng cụ pha chế",name:"Ca đánh sữa inox",desc:"Ca rót sữa dùng khi pha cappuccino và latte.",price:125000,image:"https://images.unsplash.com/photo-1748895177768-b4a54b9c2954?auto=format&fit=crop&w=800&q=80"}
+];
+const cart={};
+const money=n=>new Intl.NumberFormat("vi-VN").format(n)+"đ";
+const productRoot=document.getElementById("products");
+let activeFilter="Tất cả";
+function renderProducts(){
+ const shown=activeFilter==="Tất cả"?products:products.filter(p=>p.category===activeFilter);
+ productRoot.innerHTML=shown.map(p=>'<article class="product"><img src="'+p.image+'" alt="'+p.name+'" loading="lazy"><div class="product-body"><span class="product-category">'+p.category+'</span><h3>'+p.name+'</h3><p>'+p.desc+'</p><div class="price-row"><span class="price">'+money(p.price)+'</span><button class="add" type="button" data-add="'+p.id+'">+ Thêm</button></div></div></article>').join("");
+}
+renderProducts();
+document.getElementById("product-filters").addEventListener("click",e=>{const button=e.target.closest("[data-filter]");if(!button)return;activeFilter=button.dataset.filter;document.querySelectorAll("[data-filter]").forEach(b=>b.classList.toggle("active",b===button));renderProducts()});
+function renderCart(){
+ const items=products.filter(p=>cart[p.id]);
+ document.getElementById("cart-count").textContent=items.reduce((n,p)=>n+cart[p.id],0);
+ document.getElementById("cart-items").innerHTML=items.length?items.map(p=>'<div class="cart-line"><span>'+p.name+' × '+cart[p.id]+'</span><span>'+money(p.price*cart[p.id])+' <button type="button" data-remove="'+p.id+'" aria-label="Bỏ một sản phẩm">−</button></span></div>').join(""):"Giỏ hàng đang trống. Hãy chọn sản phẩm bên trên nhé!";
+ document.getElementById("cart-total").textContent=money(items.reduce((n,p)=>n+p.price*cart[p.id],0));
+}
+document.addEventListener("click",e=>{const add=e.target.closest("[data-add]");const remove=e.target.closest("[data-remove]");if(add){const id=Number(add.dataset.add);cart[id]=(cart[id]||0)+1;renderCart()}if(remove){const id=Number(remove.dataset.remove);cart[id]--;if(cart[id]<=0)delete cart[id];renderCart()}});
+document.getElementById("order-form").addEventListener("submit",e=>{
+ e.preventDefault();const items=products.filter(p=>cart[p.id]);if(!items.length){document.getElementById("order-result").textContent="Bạn hãy thêm ít nhất một sản phẩm vào giỏ hàng.";return}
+ const lines=items.map(p=>'- '+p.name+' x '+cart[p.id]+': '+money(p.price*cart[p.id])).join('\n');
+ const total=items.reduce((n,p)=>n+p.price*cart[p.id],0);
+ const order='ĐƠN ĐẶT HÀNG — MỘC COFFEE\nTên: '+document.getElementById("customer-name").value+'\nSĐT: '+document.getElementById("customer-phone").value+'\nĐịa chỉ: '+document.getElementById("customer-address").value+'\nSản phẩm:\n'+lines+'\nTổng: '+money(total)+'\nGhi chú: '+(document.getElementById("customer-note").value||'Không có');
+ const box=document.getElementById("order-result");box.innerHTML='<p><strong>Đã tạo nội dung đơn hàng demo.</strong></p><textarea id="order-copy" readonly style="width:100%;min-height:190px;padding:12px;border:1px solid #ddcfbd;border-radius:10px"></textarea><button class="add" type="button" id="copy-order">Sao chép đơn hàng</button>';document.getElementById("order-copy").value=order;document.getElementById("copy-order").addEventListener("click",async()=>{try{await navigator.clipboard.writeText(order);document.getElementById("copy-order").textContent="Đã sao chép!"}catch{document.getElementById("order-copy").select();document.execCommand("copy");document.getElementById("copy-order").textContent="Hãy sao chép nội dung đã chọn"}})
+});
+
+/* Trợ lý hỏi đáp Mộc Coffee: bản demo không cần API key */
+const aiLauncher=document.getElementById("ai-launcher");
+const aiPanel=document.getElementById("ai-panel");
+const aiMessages=document.getElementById("ai-messages");
+const aiInput=document.getElementById("ai-input");
+function toggleAi(open){aiPanel.classList.toggle("open",open);aiPanel.setAttribute("aria-hidden",String(!open));aiLauncher.setAttribute("aria-expanded",String(open));if(open)aiInput.focus()}
+aiLauncher.addEventListener("click",()=>toggleAi(!aiPanel.classList.contains("open")));
+document.getElementById("ai-close").addEventListener("click",()=>toggleAi(false));
+function addAiMessage(text,role){const message=document.createElement("div");message.className="ai-message "+role;message.textContent=text;aiMessages.appendChild(message);aiMessages.scrollTop=aiMessages.scrollHeight}
+function answerAi(question){
+ const q=question.toLocaleLowerCase("vi");
+ if(/xin chào|chào bạn|hello|hi\b/.test(q)) return "Xin chào bạn! Mình có thể tư vấn sản phẩm, giá cả và cách đặt hàng tại Mộc Coffee.";
+ if(/giá|bao nhiêu|rẻ nhất|thấp nhất/.test(q)){const cheapest=products.reduce((a,b)=>a.price<b.price?a:b);return "Giá sản phẩm trong danh mục mẫu từ "+money(cheapest.price)+". Mức giá thấp nhất hiện tại là "+cheapest.name+" — "+money(cheapest.price)+". Bạn có thể xem toàn bộ sản phẩm ở mục Sản phẩm."}
+ if(/gợi ý|tư vấn|nên mua|người mới|dễ uống|nhẹ/.test(q)) return "Nếu mới uống cà phê, bạn có thể thử Cà phê phối trộn ("+money(products.find(p=>p.name==="Cà phê phối trộn").price)+") vì mô tả sản phẩm là cân bằng, dễ uống. Thích hương thơm thanh thì thử Arabica thơm nhẹ ("+money(products.find(p=>p.name==="Arabica thơm nhẹ").price)+"). Đây là gợi ý dựa trên mô tả sản phẩm mẫu.";
+ if(/robusta|arabica|culi|moka|decaf|không caffeine|cold brew|phin|espresso/.test(q)){const p=products.find(p=>q.includes(p.name.toLocaleLowerCase("vi").split(" ")[0])||p.name.toLocaleLowerCase("vi").includes(q.trim()));if(p)return p.name+": "+p.desc+" Giá mẫu: "+money(p.price)+". Bạn có thể bấm “+ Thêm” để cho vào giỏ hàng.";return "Mộc Coffee có Robusta rang mộc, Arabica thơm nhẹ, cà phê phối trộn, Culi, Moka, decaf và nhiều lựa chọn khác. Bạn thích vị đậm hay thơm nhẹ?"}
+ if(/đặt hàng|mua hàng|giỏ hàng|thanh toán|đơn hàng/.test(q)) return "Cách đặt hàng: 1) Chọn sản phẩm và bấm “+ Thêm”. 2) Mở mục Giỏ hàng. 3) Điền tên, số điện thoại và địa chỉ. 4) Bấm “Tạo đơn hàng” rồi sao chép nội dung. Lưu ý: đây là bản demo, chưa gửi đơn đến cửa hàng và chưa có thanh toán trực tuyến.";
+ if(/giao hàng|vận chuyển|ship|phí ship|bao lâu/.test(q)) return "Website demo chưa có dữ liệu về phí hoặc thời gian giao hàng. Bạn nên xác nhận các thông tin này trực tiếp với cửa hàng trước khi đặt.";
+ if(/danh mục|loại nào|sản phẩm|có gì/.test(q)) return "Trang có 3 nhóm: Cà phê hạt & bột, Cà phê tiện lợi và Dụng cụ pha chế. Hãy vào mục Sản phẩm và chọn bộ lọc để xem từng nhóm.";
+ if(/ai thật|trí tuệ nhân tạo|mô hình|chatgpt|api/.test(q)) return "Hiện tại đây là trợ lý hỏi đáp theo từ khóa, chưa phải mô hình AI tạo sinh và chưa gọi API. Muốn có AI trả lời linh hoạt, cần tích hợp dịch vụ mô hình qua backend để bảo vệ API key.";
+ return "Mình chưa hiểu rõ câu hỏi này. Bạn thử hỏi về giá sản phẩm, gợi ý cà phê, danh mục hoặc cách đặt hàng nhé. Trợ lý hiện là bản demo hỏi đáp theo từ khóa.";
+}
+function submitAiQuestion(question){const value=question.trim();if(!value)return;addAiMessage(value,"user");aiInput.value="";addAiMessage(answerAi(value),"bot")}
+document.getElementById("ai-form").addEventListener("submit",e=>{e.preventDefault();submitAiQuestion(aiInput.value)});
+document.querySelectorAll("[data-ai-prompt]").forEach(button=>button.addEventListener("click",()=>submitAiQuestion(button.dataset.aiPrompt)));
+
+document.getElementById("year").textContent=new Date().getFullYear();renderCart();
+
+</script>
+<script>
+
+(function(){
+"use strict";
+var STORAGE_KEY="mocCoffeeManagement_v1";
+var state={sales:[],expenses:[]};
+var money=new Intl.NumberFormat("vi-VN",{style:"currency",currency:"VND",maximumFractionDigits:0});
+function localDate(){var d=new Date();return d.getFullYear()+"-"+String(d.getMonth()+1).padStart(2,"0")+"-"+String(d.getDate()).padStart(2,"0");}
+function esc(value){return String(value==null?"":value).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;").replace(/'/g,"&#39;");}
+function fmtDate(value){if(!value)return "—";var p=value.split("-");return p.length===3?p[2]+"/"+p[1]+"/"+p[0]:value;}
+function amount(value){return money.format(Number(value)||0);}
+function read(){try{var parsed=JSON.parse(localStorage.getItem(STORAGE_KEY)||"{}");state.sales=Array.isArray(parsed.sales)?parsed.sales:[];state.expenses=Array.isArray(parsed.expenses)?parsed.expenses:[];}catch(e){state={sales:[],expenses:[]};}}
+function save(){try{localStorage.setItem(STORAGE_KEY,JSON.stringify(state));}catch(e){alert("Trình duyệt không cho phép lưu dữ liệu. Hãy kiểm tra cài đặt bộ nhớ của trình duyệt.");}}
+function inRange(item){var from=document.getElementById("filter-from").value;var to=document.getElementById("filter-to").value;return (!from||item.date>=from)&&(!to||item.date<=to);}
+function filteredSales(){return state.sales.filter(inRange).slice().sort(function(a,b){return b.date.localeCompare(a.date)||b.id-a.id;});}
+function filteredExpenses(){return state.expenses.filter(inRange).slice().sort(function(a,b){return b.date.localeCompare(a.date)||b.id-a.id;});}
+function render(){
+var sales=filteredSales(),expenses=filteredExpenses();
+var revenue=sales.reduce(function(sum,x){return sum+(Number(x.total)||0);},0);
+var spent=expenses.reduce(function(sum,x){return sum+(Number(x.amount)||0);},0);
+document.getElementById("stat-revenue").textContent=amount(revenue);
+document.getElementById("stat-expenses").textContent=amount(spent);
+document.getElementById("stat-profit").textContent=amount(revenue-spent);
+document.getElementById("stat-sales-count").textContent=String(sales.length);
+var sb=document.getElementById("sales-body");
+sb.innerHTML=sales.length?sales.map(function(x){return "<tr><td>"+esc(fmtDate(x.date))+"</td><td>"+esc(x.product)+"</td><td>"+esc(x.customer||"—")+"</td><td>"+esc(x.qty)+"</td><td class='money'>"+esc(amount(x.price))+"</td><td class='money'>"+esc(amount(x.total))+"</td><td>"+esc(x.payment)+"</td><td><button class='delete' type='button' data-delete-sale='"+esc(x.id)+"'>Xóa</button></td></tr>";}).join(""):"<tr><td class='empty' colspan='8'>Chưa có giao dịch trong khoảng ngày đã chọn.</td></tr>";
+var eb=document.getElementById("expenses-body");
+eb.innerHTML=expenses.length?expenses.map(function(x){return "<tr><td>"+esc(fmtDate(x.date))+"</td><td>"+esc(x.title)+"</td><td>"+esc(x.category)+"</td><td class='money'>"+esc(amount(x.amount))+"</td><td>"+esc(x.payment)+"</td><td>"+esc(x.note||"—")+"</td><td><button class='delete' type='button' data-delete-expense='"+esc(x.id)+"'>Xóa</button></td></tr>";}).join(""):"<tr><td class='empty' colspan='7'>Chưa có khoản chi trong khoảng ngày đã chọn.</td></tr>";
+}
+function csvEscape(v){return '"'+String(v==null?"":v).replace(/"/g,'""')+'"';}
+function downloadCsv(filename,rows){var csv="\uFEFF"+rows.map(function(row){return row.map(csvEscape).join(",");}).join("\r\n");var blob=new Blob([csv],{type:"text/csv;charset=utf-8;"});var url=URL.createObjectURL(blob);var a=document.createElement("a");a.href=url;a.download=filename;document.body.appendChild(a);a.click();a.remove();URL.revokeObjectURL(url);}
+document.getElementById("sale-date").value=localDate();
+document.getElementById("expense-date").value=localDate();
+document.getElementById("sale-form").addEventListener("submit",function(e){
+e.preventDefault();var f=new FormData(e.currentTarget);var qty=Number(f.get("qty")),price=Number(f.get("price"));
+if(!Number.isInteger(qty)||qty<1||!Number.isFinite(price)||price<0){alert("Vui lòng kiểm tra số lượng và đơn giá.");return;}
+state.sales.push({id:Date.now()+Math.floor(Math.random()*1000),date:String(f.get("date")),product:String(f.get("product")).trim(),qty:qty,price:price,total:qty*price,customer:String(f.get("customer")||"").trim(),payment:String(f.get("payment")),note:String(f.get("note")||"").trim()});
+save();e.currentTarget.reset();document.getElementById("sale-date").value=localDate();document.getElementById("sale-qty").value="1";render();
+});
+document.getElementById("expense-form").addEventListener("submit",function(e){
+e.preventDefault();var f=new FormData(e.currentTarget);var amountValue=Number(f.get("amount"));
+if(!Number.isFinite(amountValue)||amountValue<=0){alert("Số tiền chi phải lớn hơn 0.");return;}
+state.expenses.push({id:Date.now()+Math.floor(Math.random()*1000),date:String(f.get("date")),title:String(f.get("title")).trim(),category:String(f.get("category")),amount:amountValue,payment:String(f.get("payment")),note:String(f.get("note")||"").trim()});
+save();e.currentTarget.reset();document.getElementById("expense-date").value=localDate();render();
+});
+document.getElementById("apply-filter").addEventListener("click",function(){var from=document.getElementById("filter-from").value,to=document.getElementById("filter-to").value;if(from&&to&&from>to){alert("Ngày bắt đầu không được sau ngày kết thúc.");return;}render();});
+document.getElementById("clear-filter").addEventListener("click",function(){document.getElementById("filter-from").value="";document.getElementById("filter-to").value="";render();});
+document.addEventListener("click",function(e){
+var saleId=e.target.getAttribute("data-delete-sale");var expenseId=e.target.getAttribute("data-delete-expense");
+if(saleId&&confirm("Xóa giao dịch bán hàng này?")){state.sales=state.sales.filter(function(x){return String(x.id)!==saleId;});save();render();}
+if(expenseId&&confirm("Xóa khoản chi này?")){state.expenses=state.expenses.filter(function(x){return String(x.id)!==expenseId;});save();render();}
+});
+document.getElementById("export-sales").addEventListener("click",function(){var rows=[["Ngày","Sản phẩm","Khách hàng/mã","Số lượng","Đơn giá","Thành tiền","Thanh toán","Ghi chú"]];filteredSales().forEach(function(x){rows.push([x.date,x.product,x.customer,x.qty,x.price,x.total,x.payment,x.note]);});downloadCsv("moc-coffee-ban-hang.csv",rows);});
+document.getElementById("export-expenses").addEventListener("click",function(){var rows=[["Ngày","Khoản chi","Danh mục","Số tiền","Thanh toán","Ghi chú"]];filteredExpenses().forEach(function(x){rows.push([x.date,x.title,x.category,x.amount,x.payment,x.note]);});downloadCsv("moc-coffee-chi-tieu.csv",rows);});
+read();render();
+})();
+
+</script>
+</body></html>
