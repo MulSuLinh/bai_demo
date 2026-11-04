@@ -1,0 +1,119 @@
+<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Trang quản lý bán hàng và chi tiêu demo của Mộc Coffee.">
+<title>Quản lý — Mộc Coffee</title>
+<style>
+:root{--coffee:#4b2e20;--dark:#211710;--cream:#fbf6ed;--gold:#c58b45;--muted:#776b60;--line:#eadfce;--white:#fff}
+*{box-sizing:border-box}body{margin:0;font-family:Arial,Helvetica,sans-serif;background:var(--cream);color:var(--dark);line-height:1.5}a{color:inherit;text-decoration:none}button,input,select,textarea{font:inherit}button{cursor:pointer}.wrap{width:min(1180px,94%);margin:auto}
+header{background:#fffaf2;border-bottom:1px solid var(--line)}.top{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:16px 0}.logo{font-size:1.25rem;font-weight:900;color:var(--coffee)}.logo span{color:var(--gold)}.back{color:var(--coffee);font-weight:700}
+.hero{padding:28px 0 18px}.eyebrow{margin:0;color:#96652e;font-weight:800;text-transform:uppercase;letter-spacing:1.4px;font-size:.76rem}.hero h1{margin:6px 0;font-size:clamp(1.65rem,4vw,2.4rem);line-height:1.15}.sub{margin:8px 0 0;color:var(--muted);max-width:760px}
+.notice{margin:14px 0 20px;padding:12px 14px;background:#fff7e8;border:1px solid #ead2aa;border-radius:12px;color:#694a25;font-size:.92rem}
+.stats{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px;margin-bottom:22px}.stat{padding:18px;background:var(--white);border:1px solid var(--line);border-radius:16px;box-shadow:0 5px 18px #4b2e2008}.stat span{display:block;color:var(--muted);font-size:.87rem}.stat strong{display:block;font-size:clamp(1.1rem,2vw,1.7rem);margin-top:7px;overflow-wrap:anywhere}.stat.profit strong{color:#286547}
+.filters{display:flex;align-items:end;gap:10px;flex-wrap:wrap;padding:14px;background:#f1e7d9;border-radius:14px;margin-bottom:20px}.field{display:flex;flex-direction:column;gap:6px;min-width:0}.filters .field{min-width:150px}.field label{font-size:.85rem;font-weight:700;color:#554337}.field input,.field select,.field textarea{width:100%;min-height:42px;border:1px solid #d9c8b5;border-radius:9px;padding:9px 10px;background:#fff;color:var(--dark)}.field textarea{min-height:78px;resize:vertical}.btn{border:0;border-radius:9px;padding:10px 14px;background:var(--coffee);color:#fff;font-weight:800;min-height:42px}.btn.gold{background:var(--gold);color:var(--dark)}.btn.light{background:#fff;border:1px solid #d9c8b5;color:var(--coffee)}.btn.danger{background:#a53d31;color:#fff}.layout{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px;margin-bottom:22px}.panel{background:#fff;border:1px solid var(--line);border-radius:16px;overflow:hidden;min-width:0}.panel-head{padding:16px 18px;border-bottom:1px solid var(--line)}.panel-head h2{font-size:1.12rem;margin:0}.panel-head p{font-size:.86rem;color:var(--muted);margin:5px 0 0}.panel-body{padding:18px}.form-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}.field.full{grid-column:1/-1}.actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:14px}.section-head{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;padding:18px 18px 10px}.section-head h2{margin:0;font-size:1.15rem}.table-wrap{overflow:auto;width:100%;padding:0 12px 12px}table{width:100%;border-collapse:collapse;white-space:nowrap;font-size:.9rem}th,td{text-align:left;padding:11px 9px;border-bottom:1px solid #f0e7db}th{font-size:.78rem;color:var(--muted);text-transform:uppercase;letter-spacing:.4px}td.money{font-weight:800}td .delete{border:1px solid #e5c7c1;border-radius:7px;background:#fff7f5;color:#963b31;padding:5px 8px;font-size:.8rem;font-weight:700}.empty{text-align:center;color:var(--muted);padding:25px}.footnote{color:var(--muted);font-size:.82rem;margin:22px 0 30px}
+@media(max-width:850px){.stats{grid-template-columns:repeat(2,minmax(0,1fr))}.layout{grid-template-columns:1fr}}@media(max-width:520px){.form-grid{grid-template-columns:1fr}.field.full{grid-column:auto}.top{align-items:flex-start}.stats{gap:9px}.stat{padding:13px}.filters .field{flex:1;min-width:130px}}
+</style>
+</head>
+<body>
+<header><div class="wrap top"><div class="logo">MỘC<span>.</span> COFFEE</div><span class="back">Trang quản lý độc lập</span></div></header>
+<main class="wrap">
+<section class="hero"><p class="eyebrow">Bảng điều khiển nội bộ · Bản demo</p><h1>Quản lý bán hàng & chi tiêu</h1><p class="sub">Ghi nhận các giao dịch bán hàng, theo dõi chi phí và xem kết quả thu–chi của Mộc Coffee.</p></section>
+<div class="notice"><strong>Lưu ý:</strong> Đây là bản demo tĩnh. Dữ liệu được lưu trong bộ nhớ cục bộ (localStorage) của trình duyệt này, không đồng bộ qua thiết bị khác và chưa có đăng nhập, máy chủ hay cơ sở dữ liệu. Đơn hàng trên trang cửa hàng không tự chuyển vào bảng này; cần ghi nhận bán hàng tại đây.</div>
+<section class="stats" aria-label="Tổng quan tài chính">
+<div class="stat"><span>Doanh thu theo bộ lọc</span><strong id="stat-revenue">0 ₫</strong></div>
+<div class="stat"><span>Chi tiêu theo bộ lọc</span><strong id="stat-expenses">0 ₫</strong></div>
+<div class="stat profit"><span>Chênh lệch thu − chi</span><strong id="stat-profit">0 ₫</strong></div>
+<div class="stat"><span>Số giao dịch bán hàng</span><strong id="stat-sales-count">0</strong></div>
+</section>
+<section class="filters" aria-label="Lọc theo ngày">
+<div class="field"><label for="filter-from">Từ ngày</label><input type="date" id="filter-from"></div>
+<div class="field"><label for="filter-to">Đến ngày</label><input type="date" id="filter-to"></div>
+<button class="btn" id="apply-filter" type="button">Lọc dữ liệu</button><button class="btn light" id="clear-filter" type="button">Tất cả thời gian</button>
+</section>
+<section class="layout">
+<article class="panel"><div class="panel-head"><h2>＋ Ghi nhận bán hàng</h2><p>Nhập giao dịch đã bán để tính doanh thu.</p></div><div class="panel-body">
+<form id="sale-form"><div class="form-grid">
+<div class="field"><label for="sale-date">Ngày bán *</label><input id="sale-date" name="date" type="date" required></div>
+<div class="field"><label for="sale-product">Tên sản phẩm *</label><input id="sale-product" name="product" list="product-list" maxlength="100" placeholder="VD: Robusta rang mộc" required><datalist id="product-list"><option value="Robusta rang mộc"><option value="Arabica thơm nhẹ"><option value="Cà phê phối trộn"><option value="Cà phê phin"><option value="Cà phê pha máy"><option value="Trà và đồ uống khác"></datalist></div>
+<div class="field"><label for="sale-qty">Số lượng *</label><input id="sale-qty" name="qty" type="number" min="1" step="1" value="1" required></div>
+<div class="field"><label for="sale-price">Đơn giá (VNĐ) *</label><input id="sale-price" name="price" type="number" min="0" step="1000" placeholder="120000" required></div>
+<div class="field"><label for="sale-customer">Khách hàng (không bắt buộc)</label><input id="sale-customer" name="customer" maxlength="100" placeholder="Tên khách / mã đơn"></div>
+<div class="field"><label for="sale-payment">Thanh toán</label><select id="sale-payment" name="payment"><option>Tiền mặt</option><option>Chuyển khoản</option><option>Thẻ</option><option>Khác</option></select></div>
+<div class="field full"><label for="sale-note">Ghi chú</label><input id="sale-note" name="note" maxlength="240" placeholder="Ghi chú đơn hàng (nếu có)"></div>
+</div><div class="actions"><button class="btn gold" type="submit">Lưu giao dịch bán hàng</button></div></form>
+</div></article>
+<article class="panel"><div class="panel-head"><h2>－ Ghi nhận chi tiêu</h2><p>Nhập các khoản chi vận hành, nguyên liệu hoặc chi phí khác.</p></div><div class="panel-body">
+<form id="expense-form"><div class="form-grid">
+<div class="field"><label for="expense-date">Ngày chi *</label><input id="expense-date" name="date" type="date" required></div>
+<div class="field"><label for="expense-title">Khoản chi *</label><input id="expense-title" name="title" maxlength="120" placeholder="VD: Mua hạt cà phê" required></div>
+<div class="field"><label for="expense-category">Danh mục</label><select id="expense-category" name="category"><option>Nguyên liệu</option><option>Mặt bằng</option><option>Nhân sự</option><option>Điện nước</option><option>Vận chuyển</option><option>Marketing</option><option>Dụng cụ, thiết bị</option><option>Khác</option></select></div>
+<div class="field"><label for="expense-amount">Số tiền (VNĐ) *</label><input id="expense-amount" name="amount" type="number" min="1" step="1000" placeholder="500000" required></div>
+<div class="field"><label for="expense-payment">Hình thức chi</label><select id="expense-payment" name="payment"><option>Tiền mặt</option><option>Chuyển khoản</option><option>Thẻ</option><option>Khác</option></select></div>
+<div class="field"><label for="expense-note">Ghi chú</label><input id="expense-note" name="note" maxlength="240" placeholder="Nhà cung cấp, hóa đơn..."></div>
+</div><div class="actions"><button class="btn gold" type="submit">Lưu khoản chi</button></div></form>
+</div></article>
+</section>
+<section class="panel" style="margin-bottom:18px"><div class="section-head"><h2>Danh sách bán hàng</h2><button class="btn light" type="button" id="export-sales">Xuất CSV bán hàng</button></div><div class="table-wrap"><table><thead><tr><th>Ngày</th><th>Sản phẩm</th><th>Khách hàng / mã</th><th>SL</th><th>Đơn giá</th><th>Thành tiền</th><th>Thanh toán</th><th>Thao tác</th></tr></thead><tbody id="sales-body"><tr><td class="empty" colspan="8">Chưa có giao dịch bán hàng.</td></tr></tbody></table></div></section>
+<section class="panel"><div class="section-head"><h2>Danh sách chi tiêu</h2><button class="btn light" type="button" id="export-expenses">Xuất CSV chi tiêu</button></div><div class="table-wrap"><table><thead><tr><th>Ngày</th><th>Khoản chi</th><th>Danh mục</th><th>Số tiền</th><th>Thanh toán</th><th>Ghi chú</th><th>Thao tác</th></tr></thead><tbody id="expenses-body"><tr><td class="empty" colspan="7">Chưa có khoản chi.</td></tr></tbody></table></div></section>
+<p class="footnote">Mẹo: hãy xuất CSV định kỳ để lưu bản sao. Không nhập thông tin nhạy cảm của khách hàng vào bản demo này.</p>
+</main>
+<script>
+(function(){
+"use strict";
+var STORAGE_KEY="mocCoffeeManagement_v1";
+var state={sales:[],expenses:[]};
+var money=new Intl.NumberFormat("vi-VN",{style:"currency",currency:"VND",maximumFractionDigits:0});
+function localDate(){var d=new Date();return d.getFullYear()+"-"+String(d.getMonth()+1).padStart(2,"0")+"-"+String(d.getDate()).padStart(2,"0");}
+function esc(value){return String(value==null?"":value).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;").replace(/'/g,"&#39;");}
+function fmtDate(value){if(!value)return "—";var p=value.split("-");return p.length===3?p[2]+"/"+p[1]+"/"+p[0]:value;}
+function amount(value){return money.format(Number(value)||0);}
+function read(){try{var parsed=JSON.parse(localStorage.getItem(STORAGE_KEY)||"{}");state.sales=Array.isArray(parsed.sales)?parsed.sales:[];state.expenses=Array.isArray(parsed.expenses)?parsed.expenses:[];}catch(e){state={sales:[],expenses:[]};}}
+function save(){try{localStorage.setItem(STORAGE_KEY,JSON.stringify(state));}catch(e){alert("Trình duyệt không cho phép lưu dữ liệu. Hãy kiểm tra cài đặt bộ nhớ của trình duyệt.");}}
+function inRange(item){var from=document.getElementById("filter-from").value;var to=document.getElementById("filter-to").value;return (!from||item.date>=from)&&(!to||item.date<=to);}
+function filteredSales(){return state.sales.filter(inRange).slice().sort(function(a,b){return b.date.localeCompare(a.date)||b.id-a.id;});}
+function filteredExpenses(){return state.expenses.filter(inRange).slice().sort(function(a,b){return b.date.localeCompare(a.date)||b.id-a.id;});}
+function render(){
+var sales=filteredSales(),expenses=filteredExpenses();
+var revenue=sales.reduce(function(sum,x){return sum+(Number(x.total)||0);},0);
+var spent=expenses.reduce(function(sum,x){return sum+(Number(x.amount)||0);},0);
+document.getElementById("stat-revenue").textContent=amount(revenue);
+document.getElementById("stat-expenses").textContent=amount(spent);
+document.getElementById("stat-profit").textContent=amount(revenue-spent);
+document.getElementById("stat-sales-count").textContent=String(sales.length);
+var sb=document.getElementById("sales-body");
+sb.innerHTML=sales.length?sales.map(function(x){return "<tr><td>"+esc(fmtDate(x.date))+"</td><td>"+esc(x.product)+"</td><td>"+esc(x.customer||"—")+"</td><td>"+esc(x.qty)+"</td><td class='money'>"+esc(amount(x.price))+"</td><td class='money'>"+esc(amount(x.total))+"</td><td>"+esc(x.payment)+"</td><td><button class='delete' type='button' data-delete-sale='"+esc(x.id)+"'>Xóa</button></td></tr>";}).join(""):"<tr><td class='empty' colspan='8'>Chưa có giao dịch trong khoảng ngày đã chọn.</td></tr>";
+var eb=document.getElementById("expenses-body");
+eb.innerHTML=expenses.length?expenses.map(function(x){return "<tr><td>"+esc(fmtDate(x.date))+"</td><td>"+esc(x.title)+"</td><td>"+esc(x.category)+"</td><td class='money'>"+esc(amount(x.amount))+"</td><td>"+esc(x.payment)+"</td><td>"+esc(x.note||"—")+"</td><td><button class='delete' type='button' data-delete-expense='"+esc(x.id)+"'>Xóa</button></td></tr>";}).join(""):"<tr><td class='empty' colspan='7'>Chưa có khoản chi trong khoảng ngày đã chọn.</td></tr>";
+}
+function csvEscape(v){return '"'+String(v==null?"":v).replace(/"/g,'""')+'"';}
+function downloadCsv(filename,rows){var csv="\uFEFF"+rows.map(function(row){return row.map(csvEscape).join(",");}).join("\r\n");var blob=new Blob([csv],{type:"text/csv;charset=utf-8;"});var url=URL.createObjectURL(blob);var a=document.createElement("a");a.href=url;a.download=filename;document.body.appendChild(a);a.click();a.remove();URL.revokeObjectURL(url);}
+document.getElementById("sale-date").value=localDate();
+document.getElementById("expense-date").value=localDate();
+document.getElementById("sale-form").addEventListener("submit",function(e){
+e.preventDefault();var f=new FormData(e.currentTarget);var qty=Number(f.get("qty")),price=Number(f.get("price"));
+if(!Number.isInteger(qty)||qty<1||!Number.isFinite(price)||price<0){alert("Vui lòng kiểm tra số lượng và đơn giá.");return;}
+state.sales.push({id:Date.now()+Math.floor(Math.random()*1000),date:String(f.get("date")),product:String(f.get("product")).trim(),qty:qty,price:price,total:qty*price,customer:String(f.get("customer")||"").trim(),payment:String(f.get("payment")),note:String(f.get("note")||"").trim()});
+save();e.currentTarget.reset();document.getElementById("sale-date").value=localDate();document.getElementById("sale-qty").value="1";render();
+});
+document.getElementById("expense-form").addEventListener("submit",function(e){
+e.preventDefault();var f=new FormData(e.currentTarget);var amountValue=Number(f.get("amount"));
+if(!Number.isFinite(amountValue)||amountValue<=0){alert("Số tiền chi phải lớn hơn 0.");return;}
+state.expenses.push({id:Date.now()+Math.floor(Math.random()*1000),date:String(f.get("date")),title:String(f.get("title")).trim(),category:String(f.get("category")),amount:amountValue,payment:String(f.get("payment")),note:String(f.get("note")||"").trim()});
+save();e.currentTarget.reset();document.getElementById("expense-date").value=localDate();render();
+});
+document.getElementById("apply-filter").addEventListener("click",function(){var from=document.getElementById("filter-from").value,to=document.getElementById("filter-to").value;if(from&&to&&from>to){alert("Ngày bắt đầu không được sau ngày kết thúc.");return;}render();});
+document.getElementById("clear-filter").addEventListener("click",function(){document.getElementById("filter-from").value="";document.getElementById("filter-to").value="";render();});
+document.addEventListener("click",function(e){
+var saleId=e.target.getAttribute("data-delete-sale");var expenseId=e.target.getAttribute("data-delete-expense");
+if(saleId&&confirm("Xóa giao dịch bán hàng này?")){state.sales=state.sales.filter(function(x){return String(x.id)!==saleId;});save();render();}
+if(expenseId&&confirm("Xóa khoản chi này?")){state.expenses=state.expenses.filter(function(x){return String(x.id)!==expenseId;});save();render();}
+});
+document.getElementById("export-sales").addEventListener("click",function(){var rows=[["Ngày","Sản phẩm","Khách hàng/mã","Số lượng","Đơn giá","Thành tiền","Thanh toán","Ghi chú"]];filteredSales().forEach(function(x){rows.push([x.date,x.product,x.customer,x.qty,x.price,x.total,x.payment,x.note]);});downloadCsv("moc-coffee-ban-hang.csv",rows);});
+document.getElementById("export-expenses").addEventListener("click",function(){var rows=[["Ngày","Khoản chi","Danh mục","Số tiền","Thanh toán","Ghi chú"]];filteredExpenses().forEach(function(x){rows.push([x.date,x.title,x.category,x.amount,x.payment,x.note]);});downloadCsv("moc-coffee-chi-tieu.csv",rows);});
+read();render();
+})();
+</script>
+</body>
+</html>
